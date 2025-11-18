@@ -27,7 +27,7 @@ class MasterListView(Screen):
             conv_item['on_release'] = partial(self.on_click_edit_item, item.id)
 
             if(item.isComplete):
-                datetime_str = item.completeDate.strftime("Completed on %b %d, %Y at %H:%M:%S")
+                datetime_str = item.completeDate.strftime("Completed on %b %d, %Y\nat %I:%M:%S %p")
                 conv_item['completed'] = datetime_str
                 conv_item['completed_ind_color'] = hex("#92DD92")
             else:
