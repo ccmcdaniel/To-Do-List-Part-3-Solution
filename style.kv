@@ -1,0 +1,133 @@
+#:kivy 1.0
+
+# "hex" is a function that allows us to convert hexadecimal RGBA values
+# to Kivy RGBA values.
+#:import hex kivy.utils.get_color_from_hex
+
+<Button>:
+    font_size: '25sp'
+    color: (1, 1, 1, 1)
+
+    background_normal: ''
+    background_down: ''
+    background_color: (0, 0, 0, 0)
+
+    size_hint: (None, None)
+    width: 154
+    height: 49
+
+    canvas.before: 
+        Color:
+            rgba: hex("#272727") if self.state == 'normal' else hex("#575757")
+
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+            radius: [15]
+
+<DeleteWarningLabel@Label>:
+    font_size: '48sp'
+    halign: 'center'
+    valign: 'middle'
+    text_size: self.size
+
+
+    canvas.before:
+        Color:
+            rgba: hex("#9F7A7A")
+
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+            radius: [61]
+
+<InfoLabel@Label>:
+    font_size: '48sp'
+    halign: 'center'
+    valign: 'middle'
+    text_size: self.size
+
+    canvas.before:
+        Color:
+            rgba: hex("#a1a1a1ff")
+
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+            radius: [61]
+
+<DeleteButton@Button>:
+    canvas.before: 
+        Color:
+            rgba: hex("#820000") if self.state == 'normal' else hex("#A20000")
+
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+            radius: [15]
+
+<SaveButton@Button>:
+    canvas.before: 
+        Color:
+            rgba: hex("#009717") if self.state == 'normal' else hex("#00db21ff")
+
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+            radius: [15]
+
+
+<TaskViewTitle@TextInput>:
+    size_hint: (1, None)
+    height: 74
+    font_size: '32sp'
+
+<TaskViewDesc@TextInput>:
+    size_hint: (1, None)
+    height: 226
+    font_size: '32sp'
+
+
+<TitleLabel@Label>:
+    font_size: '35sp'
+    color: (0, 0, 0, 1)
+
+<HeaderBox@BoxLayout>:
+    size_hint: (1, None)
+    height: 75
+
+    canvas.before:
+        Color: 
+            rgba: hex("#D9D9D9")
+
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+<FooterBox@BoxLayout>:
+    size_hint: (1, None)
+    height: 75
+
+    padding: 20
+    spacing: 10
+
+    canvas.before:
+        Color: 
+            rgba: hex("#D9D9D9")
+
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+<BodyBox@BoxLayout>:
+    padding: 20
+    spacing: 10
+
+    canvas.before:
+        Color: 
+            rgba: hex("#FFFFFF")
+
+        Rectangle:
+            size: self.size
+            pos: self.pos
+

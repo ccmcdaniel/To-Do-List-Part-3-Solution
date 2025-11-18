@@ -1,0 +1,59 @@
+#:kivy 1.0
+
+#:import hex kivy.utils.get_color_from_hex
+
+<ToDoItemView>:
+    orientation: 'horizontal'
+    size_hint: (1, None)
+    height: 100
+    padding: 5    
+    on_press: root.on_click_edit
+
+
+    canvas.before:
+        Color:
+            rgba: self.background_color
+
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    RelativeLayout:
+        size_hint: (0.3, 1)
+
+        Label:
+            text: "X"
+
+            size_hint: (None, None)
+            size: (29, 29)
+
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+
+            canvas.before:
+                Color:
+                    rgba: root.completed_ind_color
+
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+
+    BoxLayout:
+        orientation: 'vertical'
+
+        Label:
+            text: root.title
+            halign: 'left'
+            text_size: self.size
+            font_size: '30sp'
+            color: (0, 0, 0, 1)
+
+        Label:
+            text: root.completed
+            halign: 'right'
+            text_size: self.size
+            font_size: '15sp'
+            color: (0, 0, 0, 1)
+            font_style: 'italics'
+
+
+

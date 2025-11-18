@@ -1,0 +1,40 @@
+#:kivy 1.0
+
+<DeleteWarningView>:
+    BoxLayout:
+        orientation: 'vertical'
+
+        HeaderBox:
+            orientation: 'vertical'
+
+            TitleLabel:
+                text: "Delete Task"
+
+        BodyBox:
+            orientation: 'vertical'
+
+            Widget: 
+
+            DeleteWarningLabel:
+                text: "Are you sure you want to delete?"
+
+                size_hint: (1, None)
+                height: 312
+            
+            Widget:
+
+        FooterBox:
+            orientation: 'horizontal'
+
+            DeleteButton:
+                text: 'Delete'
+                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                on_release: root.on_click_confirm()
+
+            Widget: 
+
+            Button:
+                text: 'Cancel'
+                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                on_release: app.root.current = "edit_task"
+        

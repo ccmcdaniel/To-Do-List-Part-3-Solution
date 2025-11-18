@@ -1,0 +1,54 @@
+#:kivy 1.0
+
+<EditTaskView>:
+    BoxLayout:
+        orientation: 'vertical'
+
+        HeaderBox:
+            orientation: 'vertical'
+
+            TitleLabel:
+                text: "Edit Task"
+
+        BodyBox:
+            orientation: 'vertical'
+
+            TaskViewTitle:
+                text: root.title
+                on_text: root.title = self.text
+
+            TaskViewDesc:
+                text: root.desc
+                on_text: root.desc = self.text
+
+            BoxLayout:
+                orientation: 'horizontal'
+                size_hint: (1, None)
+                height: 60
+                padding: (0, 11, 0, 11)
+
+                Widget:
+                
+                DeleteButton:
+                    text: 'Delete'
+                    on_release: root.on_press_delete()
+
+                Widget:
+
+            Widget:
+
+        FooterBox:
+            orientation: 'horizontal'
+
+            SaveButton:
+                text: 'Save'
+                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                on_release: root.on_press_save()
+
+            Widget:
+
+            Button:
+                text: 'Cancel'
+                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                on_release: app.root.current = "master_list"
+        

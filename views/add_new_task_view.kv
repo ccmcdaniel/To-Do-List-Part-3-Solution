@@ -1,0 +1,40 @@
+#:kivy 1.0
+
+<AddNewTaskView>:
+    BoxLayout:
+        orientation: 'vertical'
+
+        HeaderBox:
+            orientation: 'vertical'
+
+            TitleLabel:
+                text: "Add New Task"
+
+        BodyBox:
+            orientation: 'vertical'
+
+            TaskViewTitle:
+                id: txtTitle
+                hint_text: 'Title'
+
+            TaskViewDesc:
+                id: txtDesc
+                hint_text: "Description"
+
+            Widget:
+
+        FooterBox:
+            orientation: 'horizontal'
+
+            SaveButton:
+                text: 'Save'
+                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                on_release: root.on_press_add_task()
+
+            Widget:
+
+            Button:
+                text: 'Cancel'
+                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                on_release: root.on_press_cancel()
+        

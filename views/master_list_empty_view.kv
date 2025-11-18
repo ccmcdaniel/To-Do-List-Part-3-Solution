@@ -1,0 +1,44 @@
+#:kivy 1.0
+#:import hex kivy.utils.get_color_from_hex
+
+<MasterListEmptyView>:
+    BoxLayout:
+        orientation: 'vertical'
+
+        HeaderBox:
+            orientation: 'vertical'
+
+            TitleLabel:
+                text: "To Do List"
+
+        BodyBox:
+            orientation: 'vertical'
+
+            Widget: 
+
+            InfoLabel:
+                text: "No New Task.  Begin by adding a new task below."
+
+                size_hint: (1, None)
+                height: 312
+            
+            Widget:
+        
+        FooterBox:
+            orientation: 'horizontal'
+
+            # Empty Widget to fill up space.  Used to center the 
+            # "new" button by filling in the left-hand space.
+
+            Widget:
+                size_hint: (0.25, 1)
+
+            Button:
+                text: 'New'
+                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                on_release: app.root.current = "add_new_task"
+
+            # Empty Widget to fill up space.  Used to center the 
+            # "new" button by filling in the right-hand space.
+            Widget:
+                size_hint: (0.25, 1)
