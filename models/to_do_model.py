@@ -1,5 +1,6 @@
 import copy # used in Get Item operation for duplicating an object.
 from datetime import datetime
+from models.database_model import ToDoDatabase
 
 class ToDoItem:
     id = 0
@@ -7,7 +8,7 @@ class ToDoItem:
     desc = ""
     isComplete = False
     completeDate = None
-
+  
     def __init__(self, id = 0, title = "", desc = ""):
         self.id = id
         self.title = title
@@ -18,6 +19,7 @@ class ToDoItem:
     def __str__(self):
         str = f"{self.title}\n"
         str += f"-->{self.desc}\n"
+
         if(self.isComplete):
             str += f"-->Completed on {self.completeDate}\n"
 
@@ -27,10 +29,25 @@ class ToDoItem:
         self.isComplete = True
         self.completeDate = datetime.now()
 
-
 class ToDoModel:
     __items = [] # items is made private due to double underscore (__).
     __id_counter = 0
+    __db = ToDoDatabase()
+
+    def __init__(self):
+        db_items = self.__db.get_all_tasks()
+
+        for item in db_items:
+            new_item = ToDoItem(id=item[0], title=item[1], desc=item[2])
+            new_item.isComplete = bool(item[3])
+            
+            if(new_item.isComplete):
+                new_item.completeDate = datetime(item[4])
+            else:
+                new_item.completeDate = None
+
+            self.__items.append(new_item)
+
 
     def __str__(self):
         str = ""
@@ -41,16 +58,16 @@ class ToDoModel:
 
     # CRUD - Create Operation
     def AddItem(self, item):
-        if ToDoItem != None:
-            item.id = self.__id_counter
-            self.__id_counter += 1
+        if item != None:
             self.__items.append(item)
+            self.__db.add_new_task(item)
 
     # CRUD - Update Operation
     def UpdateItem(self, item):
         for i in range(len(self.__items)):
             if(self.__items[i].id == item.id):
                 self.__items[i] = item
+                self.__db.update_task(item)
                 return True
         
         return False
@@ -60,6 +77,7 @@ class ToDoModel:
         for i in range(len(self.__items)):
             if(self.__items[i].id == id):
                 del self.__items[i]
+                self.__db.remove_task(id)
                 return True
             
         return False
@@ -87,6 +105,7 @@ class ToDoModel:
         for i in range(len(self.__items)):
             if(self.__items[i].id == id):
                 self.__items[i].MarkComplete()
+                self.__db.update_task(self.__items[i])
                 return True
 
         return False
