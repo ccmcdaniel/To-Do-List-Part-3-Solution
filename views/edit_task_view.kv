@@ -22,16 +22,34 @@
                 on_text: root.desc = self.text
 
             BoxLayout:
-                orientation: 'horizontal'
-                size_hint: (1, None)
-                height: 60
+                orientation: 'vertical'
                 padding: (0, 11, 0, 11)
 
-                Widget:
- 
-                DeleteButton:
-                    text: 'Delete'
-                    on_release: root.on_press_delete()
+                BoxLayout:
+                    orientation: 'horizontal'
+                    spacing: 20
+
+                    Widget:
+                
+                    Button:
+                        text: 'Mark as Complete'
+                        width: 254
+                        on_release: root.on_press_mark_complete()
+
+                    Widget:
+                
+                BoxLayout:
+                    orientation: 'horizontal'
+                    spacing: 20
+
+                    Widget:
+                
+                    DeleteButton:
+                        text: 'Delete'
+                        width: 254
+                        on_release: root.on_press_delete()
+
+                    Widget:
 
                 Widget:
 

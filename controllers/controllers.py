@@ -87,6 +87,12 @@ class EditTaskView(Screen):
         self.manager.current = "delete_warning"
         self.manager.current_screen.load_screen(self.id)
 
+    def on_press_mark_complete(self):
+        app = App.get_running_app()
+        app.model.SetItemComplete(self.id)
+        self.manager.current = "master_list"
+        self.manager.current_screen.load_screen()
+
 
 class DeleteWarningView(Screen):
     id = -1

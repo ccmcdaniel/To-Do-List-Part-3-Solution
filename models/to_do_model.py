@@ -42,7 +42,8 @@ class ToDoModel:
             new_item.isComplete = bool(item[3])
             
             if(new_item.isComplete):
-                new_item.completeDate = datetime(item[4])
+                date_format = "%Y-%m-%d %H:%M:%S.%f"
+                new_item.completeDate = datetime.strptime(item[4], date_format)
             else:
                 new_item.completeDate = None
 
